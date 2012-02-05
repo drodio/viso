@@ -1,0 +1,202 @@
+@import "compass/reset"
+@import "compass/css3"
+
+@import "compass/typography/vertical_rhythm"
+
+$base-font-size: 14px
+$base-line-height: 20px
+
+@include establish-baseline
+
+body
+  font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif
+
+.monsoon
+  h1
+    border-bottom: 1px solid #eee
+    font-size: 32px
+    font-weight: 200
+    margin: 40px 0
+    line-height: 39px
+
+  h2, h3, h4, h5
+    font-weight: bold
+    line-height: $base-line-height
+    margin: $base-line-height 0
+
+  h2
+    font-size: 22px
+
+  h3
+    font-size: 18px
+
+  h4
+    font-size: 16px
+
+  h5
+    font-size: 14px
+
+  p
+    line-height: $base-line-height
+    margin: $base-line-height 0
+
+  p > img
+    max-width: 100%
+
+  ul, ol
+    padding-left: 20px
+    margin: $base-line-height 0
+
+  ul
+    list-style-type: disc
+
+  ol
+    list-style-type: decimal
+
+  ul ul, ol ol
+    margin: 0
+
+  code
+    background: #eee
+    font-family: monaco, monospace
+    font-size: 13px
+    padding: 2px 4px
+
+  pre
+    border: 1px solid
+    border-color: #ddd
+    @include border-radius(3px)
+    @include box-shadow(0 1px 1px rgba(0, 0, 0, .08))
+    margin: $base-line-height 0
+    overflow-x: auto
+    padding: 19px 20px
+
+    code
+      background: transparent
+      border: none
+
+  blockquote
+    border-left: 3px solid #eee
+    color: #999
+    margin: $base-line-height 0
+    padding-left: 17px
+
+  a:link
+    color: #3974c5
+    text-decoration: none
+
+  a:hover
+    text-decoration: underline
+
+  strong
+    font-weight: bold
+
+  em
+    font-style: italic
+
+  hr
+    background: #ccc
+    border: 0
+    height: 1px
+    margin: 29px 0 30px 0
+
+.wrapper
+  margin: 60px auto 40px auto
+  padding: 0 20px
+  max-width: 580px
+
+#header
+  background: #f3f3f3
+  border-bottom: 1px solid #ccc
+  color: #222
+  font-weight: bold
+  padding: 10px 0 9px 0
+  position: fixed
+  text-align: center
+  top: 0
+  width: 100%
+
+  h1
+    left: 15px
+    position: absolute
+    text-transform: lowercase
+
+    a:link,
+    a:visited
+      color: #444
+      text-decoration: none
+
+      small
+        color: #979797
+        font-size: 1em
+        font-weight: normal
+
+  ul
+    position: absolute
+    right: 15px
+    text-align: left
+    top: 9px
+
+    .trigger
+      background: url("../images/embed/text/share_glyph.png")
+      height: 21px
+      display: block
+      text-indent: -99999px
+      width: 21px
+
+    .pop_over
+      background: #fff
+      border: 1px solid rgba(0, 0, 0, .25)
+      @include border-radius(5px)
+      @include box-shadow(0 1px 10px rgba(0, 0, 0, .1))
+      position: absolute
+      right: -9px
+      top: 37px
+      width: 244px
+
+      &:before
+        content: ""
+        position: absolute
+        border-style: solid
+        border-color: rgba(0, 0, 0, .20) transparent
+        // reduce the damage in FF3.0
+        display: block
+        width: 0
+
+        top: -11px // value = - border-top-width - border-bottom-width
+        bottom: auto
+        left: auto
+        right: 9px // controls horizontal position
+        border-width: 0 10px 10px
+
+      &:after
+        content: ""
+        position: absolute
+
+        right: 9px
+        border-width: 0 10px 10px
+        border-style: solid
+        border-color: #fff transparent
+        // reduce the damage in FF3.0
+        display: block
+        width: 0
+        top: -9px
+
+      li
+        border-bottom: 1px solid #e1e1e1
+        padding: 4px
+
+        &:last-child
+          border: none
+
+        a:link,
+        a:visited
+          @include border-radius(3px)
+          color: #222
+          display: block
+          padding: 6px 8px
+          text-decoration: none
+
+        a:hover
+          background: #457dcc
+          color: #fff

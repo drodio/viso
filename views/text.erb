@@ -1,13 +1,24 @@
+<%# unless drop.subscribed? %>
+<%# end %>
+
+<!-- <a class="embed" href="<%= drop.content_url %>">Direct link</a> -->
+
 <header id="header">
-  <% unless drop.subscribed? %>
-    <h1><a href="http://store.getcloudapp.com/">Simple sharing</a></h1>
-  <% end %>
+	<h1><a href="#">CloudApp <small>Sign Up</small></a></h1>
+	<h2><%= escape_html drop.name %></h2>
 
-  <h2><%= escape_html drop.name %></h2>
+	<ul>
+		<li>
+			<a class="trigger" href="#">Share</a>
 
-  <a class="embed" href="<%= drop.content_url %>">Direct link</a>
+			<ul class="pop_over">
+				<li><a href="#">Download File</a></li>
+				<li><a href="#">View Raw</a></li>
+			</ul>
+		</li>
+	</ul>
 </header>
 
-<section class="monsoon" id="content">
-  <%= drop.content %>
-</section>
+<div class="wrapper monsoon">
+	<%= drop.content %>
+</div>
