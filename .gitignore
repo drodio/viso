@@ -1,3 +1,4 @@
 log/newrelic_agent.log
 public/assets
 .rspec
+.sass-cache
