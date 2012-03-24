@@ -65,6 +65,15 @@ module Configuration
       end
     end
 
+    def register_response_and_view_helpers
+      register Sinatra::RespondWith
+      register JammitHelper
+      helpers { include Rack::Utils }
+    end
+
+    def vary_all_responses_on_accept_header
+      before { headers['Vary'] = 'Accept' }
+    end
 
     def add_cache_middleware
       configure :production, :development do
@@ -74,16 +83,6 @@ module Configuration
                          metastore:   "#{url}/meta",
                          entitystore: "#{url}/body"
       end
-    end
-
-    def register_response_and_view_helpers
-      register Sinatra::RespondWith
-      register JammitHelper
-      helpers { include Rack::Utils }
-    end
-
-    def vary_all_responses_on_accept_header
-      before { headers['Vary'] = 'Accept' }
     end
 
     # Cache public assets for 1 year.
