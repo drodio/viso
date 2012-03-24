@@ -2,7 +2,12 @@
   title: image css
 */
 
-
+#image {
+  background: url("../images/embed/image/body-bg.png") repeat #191919;
+  color: #fff;
+  font: 12px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+  min-width: 320px;
+}
 
 /* =header
 ---------------------------------------------- */
