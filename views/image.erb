@@ -6,19 +6,18 @@ h2.drodio {color: #5c5c5c; font-family:Georgia, sans-serif; font-size: 14px }
 -->
 </style>
 
-<!--<header id="header">
+<header id="header">
   <% unless drop.subscribed? %>
     <h1><a href="http://store.getcloudapp.com/">Simple sharing</a></h1>
   <% end %>
-</header>-->
-<div align="center">
-  <h2 class="drodio"><%= escape_html drop.name %></h2>	
+	<h2 class="drodio"><%= escape_html drop.name %></h2>	
+</header>
 <section id="content">
   <img alt="<%= escape_html drop.name %>" src="<%= drop.content_url %>">
 </section>
 <br><br>
 <!-- DROdio OLD: <a class="embed" href="<%= drop.content_url %>">Direct Link</a> -->
-	
+<div align="center">
 <a href="http://go.DanielOdio.com/massive">About These Screenshots</a> &nbsp; | &nbsp; <a href="<%= drop.content_url %>">Grab a Direct Link</a> &nbsp; | &nbsp; <a href="http://www.twitter.com/drodio">@drodio</a>
 <br><br><br>
 </font>
