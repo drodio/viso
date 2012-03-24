@@ -10,11 +10,10 @@ h2.drodio {color: #9f9f9f; font-family:Georgia, sans-serif; font-size: 14px }
   <% unless drop.subscribed? %>
     <h1><a href="http://store.getcloudapp.com/">Simple sharing</a></h1>
   <% end %>
-
-  <h2 class="drodio"><%= escape_html drop.name %></h2>
 </header>
 
 <section id="content">
+  <h2 class="drodio"><%= escape_html drop.name %></h2>	
   <img alt="<%= escape_html drop.name %>" src="<%= drop.content_url %>">
 </section>
 <br><br>
