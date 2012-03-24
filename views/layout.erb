@@ -1,7 +1,36 @@
 <!DOCTYPE html>
 <html class="no-js" dir="ltr" lang="en">
   <head>
-    <title><%= escape_html drop.name %></title>
+    <title>DROdio Screenshot - <%= escape_html drop.name %></title>
+
+	<!--- Start Daniel's additions ---->
+	<link REL="SHORTCUT ICON" HREF="http://www.DanielOdio.com/wp-content/uploads/2012/03/favicon.ico">
+	<script type="text/javascript" src="//www.hellobar.com/hellobar.js"></script>
+	<script type="text/javascript">
+	    new HelloBar(16057,25845);
+	</script>
+	<noscript>
+	    The Hello Bar is a simple <a href="https://www.hellobar.com">web toolbar</a> that engages users and communicates a call to action.
+	</noscript>
+
+	<script type="text/javascript">
+	adroll_adv_id = "FVVWHKUGONCKLLF2VMYKSH";
+	adroll_pix_id = "FC5MIZPDFFEM7MQ6X5AQAY";
+	(function () {
+	var oldonload = window.onload;
+	window.onload = function(){
+	   __adroll_loaded=true;
+	   var scr = document.createElement("script");
+	   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+	   scr.setAttribute('async', 'true');
+	   scr.type = "text/javascript";
+	   scr.src = host + "/j/roundtrip.js";
+	   ((document.getElementsByTagName('head') || [null])[0] ||
+	    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+	   if(oldonload){oldonload()}};
+	}());
+	</script>
+	<!--- End Daniel's additions ---->
 
     <meta charset="utf-8">
 
@@ -10,7 +39,7 @@
 
     <meta content="CloudApp" name="author">
 
-    <link href="<%= asset_path :img, '/images/favicon.ico' %>" rel="shortcut icon">
+    <link REL="SHORTCUT ICON" HREF="http://www.DanielOdio.com/wp-content/uploads/2012/03/favicon.ico">
 
     <%= include_stylesheets :viso %>
 
