@@ -65,6 +65,17 @@ module Configuration
       end
     end
 
+
+    def add_cache_middleware
+      configure :production, :development do
+        require 'rack/cache'
+        url = "memcached://#{ENV['MEMCACHE_USERNAME']}:#{ENV['MEMCACHE_PASSWORD']}@#{ENV['MEMCACHE_SERVERS']}"
+        use Rack::Cache, verbose:     true,
+                         metastore:   "#{url}/meta",
+                         entitystore: "#{url}/body"
+      end
+    end
+
     def register_response_and_view_helpers
       register Sinatra::RespondWith
       register JammitHelper
@@ -78,6 +89,7 @@ module Configuration
     # Cache public assets for 1 year.
     def serve_public_assets
       set :root, File.expand_path(File.join(File.dirname(settings.app_file), '..'))
+      set :static_cache_control, [ :public, :max_age => 31557600 ]
       set :public_folder, 'public'
     end
   end
