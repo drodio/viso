@@ -41,7 +41,7 @@ module JammitHelper
       return path if self.class.development?
 
       host = asset_host_proc.call path, request
-      host = "http://assets.my.cld.me"
+      host = "http://assets.cld.me/1325250420"
       File.join(host, path)
     end
   end
