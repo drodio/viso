@@ -1,30 +1,26 @@
-<header id="header">
-<script type="text/javascript">
-adroll_adv_id = "FVVWHKUGONCKLLF2VMYKSH";
-adroll_pix_id = "FC5MIZPDFFEM7MQ6X5AQAY";
-(function () {
-var oldonload = window.onload;
-window.onload = function(){
-   __adroll_loaded=true;
-   var scr = document.createElement("script");
-   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
-   scr.setAttribute('async', 'true');
-   scr.type = "text/javascript";
-   scr.src = host + "/j/roundtrip.js";
-   ((document.getElementsByTagName('head') || [null])[0] ||
-    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
-   if(oldonload){oldonload()}};
-}());
-</script>
+<style>
+<!--
+a:link { color: #cccccc; text-decoration: none; font-family: Georgia, sans-serif; font-size: 14px }
+a:visited, a:active { color: #cccccc; text-decoration: none; font-family: Georgia, sans-serif; font-size: 14px }
+p.drodio {color: #2a2a2a; font-family:Georgia, sans-serif; font-size: 14px }
+a:hover { color: #000; text-decoration: underline; font-family: Georgia, sans-serif; font-size: 14px; background-color: #CCC }
+
+-->
+</style>
+
+<!--<header id="header">
   <% unless drop.subscribed? %>
     <h1><a href="http://store.getcloudapp.com/?utm_source=viso&utm_medium=ribbon&utm_campaign=viso-1.0">Simple sharing</a></h1>
   <% end %>
-
-  <h2><%= escape_html drop.name %></h2>
-
-  <a class="embed" href="<%= drop.content_url %>">Direct Link</a>
-</header>
-
+</header> -->
 <section id="content">
   <img alt="<%= escape_html drop.name %>" src="<%= drop.content_url %>">
 </section>
+<br><br>
+<!-- DROdio OLD: <a class="embed" href="<%= drop.content_url %>">Direct Link</a> -->
+<div align="center">
+<p class="drodio"><%= escape_html drop.name %></p><br>
+<a href="http://go.DanielOdio.com/massive">About This Screenshot</a> &nbsp; | &nbsp; <a href="<%= drop.content_url %>">Grab a Direct Link</a> &nbsp; | &nbsp; <a href="http://www.twitter.com/drodio">@drodio</a>
+<br><br><br>
+</font>
+</div>	
