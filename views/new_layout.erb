@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="uft-8">
+  <title><%= escape_html drop.name %></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="<%= asset_path :img, '/images/favicon.ico' %>" rel="shortcut icon">
+
+  <%= include_stylesheets :new_viso %>
+
+  <%= include_javascripts :new_viso %>
+
+  <script type="text/javascript" src="http://use.typekit.com/hul1akx.js" onload="try{Typekit.load();}catch(e){}" async></script>
+</head>
+
+<body>
+  <header id="header">
+    <h1 style="display: none;">CloudApp</h1>
+
+    <% unless drop.subscribed? %>
+      <a href="http://store.getcloudapp.com/?utm_source=viso&utm_medium=ribbon&utm_campaign=viso-2.0" class="brand">Start sharing</a>
+    <% end %>
+
+    <h2><strong><%= escape_html drop.basename %></strong><%= escape_html drop.extension %></h2>
+
+    <ul class="menu">
+      <li>
+        <a href="#" class="trigger">Menu</a>
+
+        <ul class="drop-down">
+          <li><a href="<%= drop.content_url %>">Direct Link</a></li>
+          <li><a href="<%= drop.download_url %>">Download Link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </header>
+
+  <%= yield %>
+
+  <% if drop.gauge_id %>
+    <script type="text/javascript">
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '<%= drop.gauge_id %>');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  <% end %>
+
+  <% if ENV['GOOGLE_ANALYTICS_TOKEN'] %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '<%= ENV['GOOGLE_ANALYTICS_TOKEN'] %>']);
+
+      <% if ENV["GOOGLE_ANALYTICS_DOMAIN"] %>
+        _gaq.push(['_setDomainName', '<%= ENV['GOOGLE_ANALYTICS_DOMAIN'] %>']);
+      <% end %>
+
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <% end %>
+</body>
+</html>

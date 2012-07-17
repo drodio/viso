@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'content/code'
 
 describe Content::Code do
@@ -34,7 +35,7 @@ describe Content::Code do
       drop = FakeContent.new 'http://cl.ly/hhgttg/hello.rb'
       code = '<div class="highlight"><pre><span class="nb">puts</span>'
 
-      drop.content.start_with?(code).should == true
+      drop.content.should include(code)
     end
 
     it 'calls #super for non-code files' do
@@ -63,6 +64,16 @@ describe Content::Code do
 
       drop.content.should == expected
     end
+
+    it "handles utf-8 characters" do
+      code     = '☃'
+      expected = %{<div class="highlight"><pre><code>#{ code }</code></pre></div>}
+
+      drop = FakeContent.new 'http://cl.ly/hhgttg/hello.rb'
+      drop.stub! :raw => code, :escaped_raw => code
+
+      drop.content.should include(code)
+    end
   end
 
   describe '#code?' do
@@ -86,5 +97,4 @@ describe Content::Code do
       end
     end
   end
-
 end

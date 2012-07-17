@@ -1,0 +1,9 @@
+<section id="uploading" class="wrapper">
+  <div class="file-type"><%= escape_html(drop.extension).sub(/^\./, '') %></div>
+
+  <div class="button disabled waiting"><strong><%= escape_html(drop.basename) %></strong><%= escape_html(drop.extension) %></div>
+
+  <p>
+    Sit tight. The file is still being uploaded.
+  </p>
+</section>

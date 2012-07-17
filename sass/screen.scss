@@ -1,0 +1,264 @@
+@import "compass";
+@import "compass/reset";
+
+$base-font-size: 14px;
+$base-line-height: 20px;
+
+$default-border-radius: 4px;
+
+$base-text-color: #252525;
+$link-color: #3974C5;
+
+@mixin tisa-web-pro-font-stack {
+  font-family: "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
+}
+
+@-webkit-keyframes progress-background {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: 43px 0;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  color: $base-text-color;
+  font-family: Helvetica, Arial, Geneva, sans-serif;
+  font-size: $base-font-size;
+  line-height: 1;
+}
+
+a:link,
+a:visited {
+  color: $link-color;
+  text-decoration: none;
+}
+
+.button {
+  @include border-radius($default-border-radius);
+  @include box-sizing(border-box);
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;
+  overflow: hidden;
+  padding: 14px 14px 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  strong {
+    font-weight: bold;
+  }
+
+  &.primary {
+    @include background-image(linear-gradient(#5171B3, #4869AF));
+    @include box-shadow(0 1px 0 0 #405F9D);
+    background-color: #5171B3;
+    color: #ACBDDF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+
+    strong {
+      color: #FFF;
+    }
+  }
+
+  &.disabled {
+    @include background-image(linear-gradient(#EAEAEA, #E9E9E9));
+    @include box-shadow(0 1px 0px rgba(0, 0, 0, 0.1) inset);
+    color: #B8B8B8;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+
+    strong {
+      color: #9A9A9A;
+    }
+  }
+
+  &.waiting {
+    @include background-image(image-url("progress.png"),linear-gradient(#EAEAEA, #E9E9E9));
+    -webkit-animation-name: progress-background;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    background-repeat: repeat-x, no-repeat;
+  }
+}
+
+.wrapper {
+  max-width: 640px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+#download,
+#uploading {
+  text-align: center;
+
+  .file-type {
+    @include box-sizing(border-box);
+    background: image-url("document.png") center top no-repeat;
+    color: #EAEAEA;
+    font-size: 32px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+    height: 173px;
+    margin-bottom: 33px;
+    padding-top: 70px;
+    text-transform: uppercase;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+      background-image: image-url("document@2x.png");
+      background-size: 124px 173px;
+    }
+  }
+
+  p {
+    color: #CECECE;
+    font-size: 12px;
+    margin-top: 11px;
+  }
+}
+
+#markdown {
+  @include tisa-web-pro-font-stack;
+  line-height: 1.571428571;
+
+  #{headers()} {
+    margin: 20px 0 10px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2, h3, h4, h5 {
+    font-weight: bold;
+  }
+
+  h2 {
+    border-bottom: 1px solid #E1E1E1;
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  ul, ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul ul, ol ol {
+    margin: 0;
+  }
+
+  code {
+    @include border-radius($default-border-radius);
+    border: 1px solid #CCC;
+    font-family: Menlo, Monaco, monospace;
+    font-size: 0.857142857em;
+    padding: 1px 3px;
+  }
+
+  pre {
+    @include border-radius($default-border-radius);
+    border: 1px solid #CCC;
+    font-family: Menlo, Monaco, monospace;
+    font-size: 0.857142857em;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    padding: 12px;
+
+    code {
+      background: transparent;
+      border: none;
+      font-size: 1em;
+      padding: 0;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid #EEE;
+    color: #999;
+    margin-bottom: 15px;
+    padding-left: 17px;
+  }
+
+  a:link,
+  a:visited {
+    color: $link-color;
+    font-weight: normal;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  hr {
+    background: #CCC;
+    border: 0;
+    height: 1px;
+    margin: 29px 0 30px 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+#image {
+  &.wrapper {
+    max-width: 100%;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+
+    body.zoomed-in & {
+      max-width: none;
+    }
+  }
+}
+
+@import "header";
+@import "espresso";

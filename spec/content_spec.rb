@@ -61,7 +61,7 @@ describe Content do
 
       EM.synchrony do
         VCR.use_cassette 'ruby' do
-          drop.content.start_with?('<div').should == true
+          drop.content.should include('<div class="highlight">')
         end
 
         EM.stop

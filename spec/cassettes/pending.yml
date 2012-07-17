@@ -1,0 +1,55 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://api.cld.me:80/hhgttg
+    body: 
+    headers:
+      accept:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      !binary "YWdl":
+      - !binary |-
+        MA==
+      !binary "Y2FjaGUtY29udHJvbA==":
+      - !binary |-
+        cHVibGljOyBtYXgtYWdlPTkwMA==
+      !binary "Y29udGVudC10eXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "ZGF0ZQ==":
+      - !binary |-
+        VGh1LCAwNyBKdW4gMjAxMiAxNDoxNzoyOCBHTVQ=
+      !binary "ZXRhZw==":
+      - !binary |-
+        ImJhM2VjMWRhNDNhYTlmNTRiMTEwYzliMjA4Yzg0MjZmIg==
+      !binary "c2VydmVy":
+      - !binary |-
+        dGhpbiAxLjMuMSBjb2RlbmFtZSBUcmlwbGUgRXNwcmVzc28=
+      !binary "dmFyeQ==":
+      - !binary |-
+        QWNjZXB0
+      !binary "eC1jb250ZW50LWRpZ2VzdA==":
+      - !binary |-
+        OGJlNjZjYTMwZmM1N2Q0YmZiZDhiZWQyYjZkNGJlZjZkYTU2OTA2OQ==
+      !binary "eC1yYWNrLWNhY2hl":
+      - !binary |-
+        c3RhbGUsIHZhbGlkLCBzdG9yZQ==
+      !binary "eC1ydW50aW1l":
+      - !binary |-
+        MC4wMTE5MjA=
+      !binary "eC11YS1jb21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZSxjaHJvbWU9MQ==
+      !binary "Y29udGVudC1sZW5ndGg=":
+      - !binary |-
+        NDk4
+      !binary "Y29ubmVjdGlvbg==":
+      - !binary |-
+        Q2xvc2U=
+    body: ! '{"created_at":"2012-06-07T14:17:13Z","deleted_at":null,"id":19072336,"item_type":null,"name":null,"private":true,"redirect_url":null,"remote_url":null,"source":null,"updated_at":"2012-06-07T14:17:13Z","view_counter":0,"href":"http://my.cl.ly/items/19072336","icon":"http://assets.my.cld.me/images/item-types/unknown.png","subscribed":false,"url":"http://cl.ly/hhgttg","content_url":"http://cl.ly/hhgttg","download_url":"http://api.cld.me/hhgttg/download/"}'
+    http_version: '1.1'

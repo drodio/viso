@@ -289,6 +289,14 @@
   margin: 0;
 }
 
+.monsoon .highlight {
+  margin: 0 0 24px 0;
+}
+
+.monsoon .highlight:last-child {
+  margin: 0;
+}
+
 .monsoon .highlight pre {
   background: #fff;
   -moz-border-radius: 5px;

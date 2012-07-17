@@ -17,8 +17,11 @@
 # [pygments]:        http://pygments.org
 # [eventmachine]:    https://github.com/eventmachine/eventmachine
 # [rack-fiber_pool]: https://github.com/mperham/rack-fiber_pool
+require 'addressable/uri'
 require 'eventmachine'
+require 'metriks'
 require 'sinatra/base'
+require 'simpleidn'
 
 require 'configuration'
 require 'drop'
@@ -41,14 +44,24 @@ class Viso < Sinatra::Base
 
   # The main responder for a **Drop**. Responds to both JSON and HTML and
   # response is cached for 15 minutes.
+  get %r{^                         #
+         (?:/(text|code|image))?   # Optional drop type
+         /([^/?#]+)                # Item slug
+         (?:                       #
+           /  |                    # Ignore trailing /
+           /o                      # Show original image size
+         )?                        #
+         $}x do |type, slug|
+    Metriks.timer('viso.drop').time {
+      fetch_and_render_drop slug
+    }
+  end
+
   get %r{^
          /([^/?#]+)  # Item slug
-         (?:
-           /  |      # Ignore trailing /
-           /o        # Show original image size
-         )?
+         /status
          $}x do |slug|
-    fetch_and_render_drop slug
+    fetch_and_render_status slug
   end
 
   # The content for a **Drop**. Redirect to the identical path on the API domain
@@ -84,20 +97,55 @@ protected
   end
 
   def fetch_and_render_drop(slug)
-    drop = DropPresenter.new fetch_drop(slug), self
+    drop = Metriks.timer('viso.drop.fetch').time {
+      drop = DropPresenter.new fetch_drop(slug), self
+    }
 
-    respond_to do |format|
-      format.html { drop.render_html }
-      format.json { drop.render_json }
-    end
+    check_domain_matches drop
+
+    Metriks.timer("viso.drop.render.#{ drop.item_type }").time {
+      respond_to {|format|
+        format.html { drop.render_html }
+        format.json { drop.render_json }
+      }
+    }
   rescue => e
     env['async.callback'].call [ 500, {}, error_content_for(:error) ]
-    HoptoadNotifier.notify_or_ignore e if defined? HoptoadNotifier
+    Airbrake.notify_or_ignore e if defined? Airbrake
+  end
+
+  def fetch_and_render_status(slug)
+    puts [ '#' * 5, 'rendering status', '#' * 5 ].join(' ')
+    drop = DropPresenter.new fetch_drop(slug), self
+    status drop.pending? ? 204 : 200
   end
 
   def error_content_for(type)
     type = type.to_s.gsub /_/, '-'
     File.read File.join(settings.public_folder, "#{ type }.html")
+  end
+
+  # Check for drops served where the drop's domain doesn't match the accessed
+  # domain. For example, a user using another user's custom domain.
+  def check_domain_matches(drop)
+    unless custom_domain_matches? drop
+      puts [ '*' * 5,
+             drop.data[:url].inspect,
+             env['HTTP_HOST'].inspect,
+             '*' * 5
+           ].join(' ')
+
+      not_found
+    end
+  end
+
+  def custom_domain_matches?(drop)
+    expected = SimpleIDN.to_ascii Addressable::URI.parse(drop.data[:url]).host
+    actual   = SimpleIDN.to_ascii env['HTTP_HOST'].split(':').first
+
+    DropFetcher.default_domains.include?(actual) or
+      actual == expected or
+      actual.sub(/^www\./, '') == expected
   end
 
 end
