@@ -25,6 +25,7 @@ class Drop
   end
 
   def beta?
+    return false
     source = @data.fetch :source, nil
     source && source.include?('Cloud/2.0 beta')
   end
